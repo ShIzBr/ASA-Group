@@ -10,53 +10,13 @@
     <title>ASA Group</title>
 </head>
 <body>
+    <div class="wrapper">
     <header class="header">
         <div class="container">
-        <div class="header__inner">
+        <div class="header__inner lock-padding" id="header">
             <div class="header__logo">ASA group</div>
-            <div class="menu-burger">
-                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 384 384" style="enable-background:new 0 0 384 384;" xml:space="preserve">
-<g>
-	<g>
-		<g>
-			<rect x="0" y="277.333" width="384" height="42.667"/>
-			<rect x="0" y="170.667" width="384" height="42.667"/>
-			<rect x="0" y="64" width="384" height="42.667"/>
-		</g>
-	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-</svg>
+            <div class="header__burger">
+                <span></span>
             </div>
             <ul class="header__nav">
                 <li><a href="#" class="js-intro">Главная</a></li>
@@ -68,7 +28,7 @@
             </ul>
             <div class="header__contacts">
                 <div class="phone">+7 (702) 415-63-87</div>
-                <button class="btn js-header__contacts">Заказать консультацию</button>
+                <button class="btn js-header__contacts popup-link" data-popup="popup_form">Заказать консультацию</button>
             </div>
         </div>
         </div>
@@ -83,18 +43,7 @@
                         <span class="intro__describe _anim-items _anim-no-hide">за м.кв работы</span>
                     </div>
                 </div>
-                <!-- <div class="call-form">
-                    <div class="call-form__title">Заполните форму чтобы вызвать замерщика <span>бесплатно</span></div>
-                    <form action="#">
-                        <input class="call-form__name" type="text" placeholder="Введите Ваше имя">
-                        <input class="call-form__phone" type="text" placeholder="Введите Ваш телефон">
-                        <button class="call-form__btn js-call-form__btn" type="submit">Отправить</button>
-                    </form>
-                    <div class="call-form__subtitle">Мы не передаём ваши данные третьим лицам</div>
-                </div> -->
             </div>
-            
-
         </div>
     </div>
     <div class="advantages">
@@ -341,6 +290,36 @@
             </div>
         </div>
     </footer>
-    <script src="js/all.js"></script>
+
+    <div id="popup_form" class="popup">
+        <div class="popup__body">
+            <div class="popup__content">
+                <a href="#header" class="popup__close close-popup">X</a>
+                <div class="call-form">
+                    <div class="call-form__title">Заполните форму чтобы вызвать замерщика <span>бесплатно</span></div>
+                    <form action="#">
+                        <input class="call-form__name" type="text" placeholder="Введите Ваше имя">
+                        <input class="call-form__phone" type="text" placeholder="Введите Ваш телефон">
+                        <button class="call-form__btn js-call-form__btn popup-link" data-popup="popup_recieve" type="submit">Отправить</button>
+                    </form>
+                    <div class="call-form__subtitle">Мы не передаём ваши данные третьим лицам</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup_recieve" class="popup">
+        <div class="popup__body">
+            <div class="popup__content">
+            <a href="#header" class="popup__close close-popup">X</a>
+                <div class="order-recive">
+                    <div class="order-recive__title">Спасибо!</div>
+                    <div class="order-recive__subtitle">Ваша заявка принята. Мы свяжемся с вами в ближайшее время</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/all.js"></script>
 </body>
 </html>

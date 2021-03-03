@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import {vmodal} from './vmodal.js';
 
 $('.js-intro').on('click', function(){
     $("html, body").animate({ scrollTop: $('.intro').offset().top-100 }, 600);
@@ -28,6 +27,7 @@ $('.js-header__footer').on('click', function(){
 $('.js-footer__right').on('click', function(){
     $("html, body").animate({ scrollTop: 0 }, 600);
 });
+
 let flagBurgerOpen = false;
 $('.menu-burger').on('click', function(){
     if(!flagBurgerOpen){
@@ -38,47 +38,20 @@ $('.menu-burger').on('click', function(){
         $('.header__nav').css("left","-15rem");
         flagBurgerOpen = !flagBurgerOpen
     }
-    
 })
 
+$('.header__burger').click(function(event){
+    $('.header__burger, .header__menu').toggleClass('active');
+    $('body').toggleClass('lock');
 
-
-const modalCalled = vmodal({
-    content: `
-    <div class="call-form">
-    <div class="popup__close" data-close="true"></div>
-        <div class="call-form__title">Заполните форму чтобы вызвать замерщика <span>бесплатно</span></div>
-        <form action="#">
-            <input class="call-form__name" type="text" placeholder="Введите Ваше имя">
-            <input class="call-form__phone" type="text" placeholder="Введите Ваш телефон">
-            <button class="call-form__btn js-call-form__btn" type="submit">Отправить</button>
-        </form>
-        <div class="call-form__subtitle">Мы не передаём ваши данные третьим лицам</div>
-    </div>
-    `
-});
-
-
-const modalRecived = vmodal({
-    content: `
-    <div class="popup">
-        <div class="popup__close" data-close="true"></div>
-        <div class="popup__title">Спасибо!</div>
-        <div class="popup__subtitle">Ваша заявка принята. Мы свяжемся с вами в ближайшее время</div>
-    </div>
-    `
-});
-
-const btnRecived = document.querySelector('.js-call-form__btn');
-btnRecived.addEventListener('click', () =>{
-    console.log('btnRecived')
-    modalRecived.open();
-})
-
-const btnCalled = document.querySelector('.js-header__contacts');
-btnCalled.addEventListener('click', () =>{
-    console.log('btnCalled')
-    modalCalled.open();
+    if(!flagBurgerOpen){
+        $('.header__nav').css("left","1rem");
+        flagBurgerOpen = !flagBurgerOpen
+    }
+    else{
+        $('.header__nav').css("left","-15rem");
+        flagBurgerOpen = !flagBurgerOpen
+    }
 })
 
 $(window).scroll(function(){
@@ -129,3 +102,104 @@ if(animItems.length > 0){
 }
 
 
+/***popup_start*****/
+
+const popupLinks = document.querySelectorAll('.popup-link');
+const body = document.querySelector('body');
+const lockPadding = document.querySelectorAll('.lock-padding');
+let unlock = true;
+const timeout = 800;
+
+if(popupLinks.length > 0){
+    for(let index = 0; index < popupLinks.length; index++){
+        const popupLink = popupLinks[index];
+        popupLink.addEventListener("click", function(e){
+            const popupName = popupLink.getAttribute('data-popup');
+            console.log('popupName = ' + popupName)
+            const currentPopup = document.getElementById(popupName);
+            
+            popupOpen(currentPopup);
+            e.preventDefault();
+        })
+    }
+}
+
+const popupCloseIcon = document.querySelectorAll('.close-popup');
+if(popupCloseIcon.length > 0){
+    for(let index = 0; index < popupCloseIcon.length; index++){
+        const el = popupCloseIcon[index];
+        el.addEventListener('click', function(e){
+            popupClose(el.closest('.popup'));
+            e.preventDefault()
+        })
+    }
+}
+
+function popupOpen(currentPopup){
+    if(currentPopup && unlock){
+        const popupActive = document.querySelector('.popup.open');
+        if(popupActive){
+            popupClose(popupActive, false);
+        } else {
+            bodyLock()
+        }
+        currentPopup.classList.add('open');
+        currentPopup.addEventListener("click", function(e){
+            if(!e.target.closest('.popup__content')){
+                popupClose(e.target.closest('popup'))
+            }
+        })
+    }
+}
+
+function popupClose(popupActive, doUnlock = true){
+    if(unlock){
+        popupActive.classList.remove('open');
+        if(doUnlock){
+            bodyUnlock();
+        }
+    }
+}
+
+function bodyLock(){
+    const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
+    if(lockPadding > 0){
+        for(let index = 0; index < lockPadding.length; index++){
+            const el = lockPadding[index];
+            el.style.paddingRight = lockPaddingValue
+        }
+    }
+    body.style.paddingRight = lockPaddingValue;
+    body.classList.add('lock');
+    unlock = false;
+    setTimeout(function(){
+        unlock = true
+    }, timeout)
+}
+
+function bodyUnlock(){
+    setTimeout(function(){
+        if(lockPadding.length > 0){
+            for (let index = 0; index < lockPadding.length; index++){
+                const el = lockPadding[index];
+                el.style.paddingRight = '0px'
+            }
+        }
+        body.style.paddingRight = '0px'
+        body.classList.remove('lock')
+    }, timeout);
+    
+    unlock = false;
+    setTimeout(function(){
+        unlock = true
+    }, timeout)
+}
+
+document.addEventListener('keydown', function(e){
+    if(e.which === 27){
+        const popupActive = document.querySelector('.popup.open');
+        popupClose(popupActive)
+    }
+})
+
+/***popup_end*****/

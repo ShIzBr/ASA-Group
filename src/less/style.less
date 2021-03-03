@@ -12,7 +12,13 @@ body {
     font-weight: 400;
     box-sizing: border-box;
 }
-
+body.lock{
+    overflow: hidden;
+}
+.wrapper{
+    overflow: hidden;
+    min-height: 100%;
+}
 .container{
     max-width: 1200px;
     margin: 0 auto;
@@ -110,6 +116,9 @@ body {
     }
     &__inner_bcg{
         background-color: #8c8a8aa4;
+    }
+    &__burger{
+        display: none;
     }
     &__nav{
         li{
@@ -633,11 +642,10 @@ body {
         opacity: 1;
     }
 }
-.popup{
+.order-recive{
     max-width: 28.571rem;
     max-height: 21.429rem;
     margin: 0 auto;
-    position: relative;
     border: #000 1px solid;
     text-align: center;
     font-weight: 700;
@@ -650,77 +658,67 @@ body {
         font-size: 1.43rem;
         margin: 0 2.75rem 5.28rem;
     }
-    &__close{
-        position: absolute;
-        top: 5%;
-        right: 5%;
-        cursor: pointer;
-        width: 18px;
-        height: 21px;
-        background: url(../img/popup-close.svg) no-repeat;
-    }
 }
 
-.vmodal.open .modal-overlay{
-    opacity: 1;
-    z-index: 1;
-}
 
-.vmodal.open .modal-window{
-    z-index: 1;
-    opacity: 1;
-}
 
-.vmodal.hide .modal-overlay,
-.vmodal.hide .modal-window{
-    opacity: 1;
-    z-index: 1;
-}
-
-.vmodal.open .modal-window{
-    transform: translateY(100px);
-}
-
-.vmodal.open .modal-overlay{
-    background: rgba(0,0,0, 0.5);
-}
-
-.vmodal.hide .modal-window{
-    transform: translateY(-200px);
-}
-
-.vmodal.hide .modal-overlay{
-    background: rgba(0,0,0, 0);
-}
-
-.modal-window, .modal-overlay{
-    opacity: 0;
-    z-index: -1;
-}
-
-.modal-overlay{
+.popup {
     position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left:0;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.8s ease 0s;
+}
+.popup.open{
+    opacity: 1;
+    visibility: visible;
+}
+.popup.open .popup__content{
+    opacity: 1;
+    transform: perspective(600px) translate(0, 0) rotate(0);
+}
+.popup__area{
+    position: absolute;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0, 0);
-    transition: background 0.2s ease-in;
 }
-
-.modal-window{
-    border-radius: 5px;
-    background: #fff;
-    margin: 0 auto;
-    transform: translateY(-200px);
-    transition: transform 0.2s ease-in;
+.popup__body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.menu-burger{
-    width: 24px;
-    height: 24px;
-    fill: @yellow;
-    display: none;
+.popup__content {
+    background-color: #fff;
+    color: #000;
+    max-width: 800px;
+    position: relative;
+    transition: all 0.8s ease 0s;
+    opacity: 0;
+    transform: perspective(600px) translate(0, -100%) rotateX(45deg);
+}
+.popup__content_image{
+    padding: 0;
+}
+.popup__image img{
+    max-width: 100%;
+    vertical-align: top;
+}
+.popup__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
 }
 
 @media (max-width: 1280px){
@@ -739,6 +737,66 @@ body {
         cursor: pointer;
         order: -2;
     }
+    .header__burger{
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        z-index: 3;
+    }
+    .header__burger span{
+        position: absolute;
+        background-color: #fff;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 9px;
+        transition: all 0.3s ease 0s;
+    }
+    .header__burger:before,
+    .header__burger:after{
+        content: "";
+        background-color: #fff;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        transition: all 0.3s ease 0s;
+    }
+    .header__burger:before{
+        top: 0;
+    }
+    .header__burger:after{
+        bottom: 0;
+    }
+
+    .header__burger.active span{
+        transform: scale(0);
+    }
+    .header__burger.active:before{
+        transform: rotate(45deg);
+        top: 9px;
+    }
+    .header__burger.active:after{
+        transform: rotate(-45deg);
+        bottom: 9px;
+    }
+
+    // .header__nav{
+    //     position: fixed;
+    //     top: -100%;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     transition: all 0.3s ease 0s;
+    //     background-color: #18b5a4;
+    //     padding: 70px 10px 20px 10px;
+    //     overflow: auto;
+    // }
+    // .header__nav.active{
+    //     top:0
+    // }
+
     .header__nav{
         position: absolute;
         top: 1rem;
