@@ -1,0 +1,866 @@
+@import "node_modules/normalize.less/normalize.less";
+@import './other.less';
+@import './fonts.less';
+
+@yellow: #FFB800;
+
+html{
+    font-size: 14px;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container-small{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.title{
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+._anim-show{
+    transform: translate(0, 120%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+}
+._anim-show._active,
+._active ._anim-show{
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+.call-form{
+    background-color: #fff;
+    box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    max-width: 28.571rem;
+    text-align: center;
+    padding-bottom: 3rem;
+    &__title{
+        font-size: 1.3rem;
+        font-weight: 700;
+        padding: 3.36rem 2.5rem;
+        span{
+            color: @yellow;
+        }
+    }
+    input, button{
+        border: 1px solid #CBCBCB; //цвет рамки
+        border-radius: 2rem; //закругление углов (общее)
+        outline: none; // удаляет обводку в браузерах хром(желтая) и сафари(синяя)
+        width: 22rem; // ширина на свое усмотрение
+        padding-left: 2rem;
+        margin-bottom: 1rem;
+        
+        height: 3.57rem;
+    }
+    button{
+        width: 24rem;
+        margin: 0 auto;
+        color: #fff;
+        text-align: center;
+        padding-left: 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        background: #FFB800;
+        box-shadow: 0px 6px 10px rgba(255, 184, 0, 0.4);
+    }
+    &__subtitle{
+        position: relative;
+        margin-top: 2rem;
+        font-size: 0.93rem;
+    }
+    &__subtitle::before{
+        position: absolute;
+        content: url('../img/shield.svg');
+        left: 1rem;
+    }
+}
+
+.header{
+    
+    background-image: url(../img/header-bcg3.jpg), linear-gradient(90deg, rgba(0, 0, 0, 0.73) 0%, rgba(0, 0, 0, 0.403021) 48.96%, rgba(0, 0, 0, 0) 100%);
+    background-blend-mode: overlay;
+    background-repeat:no-repeat;
+    background-position: center;
+    padding: 0 1rem 45rem 1rem;
+    &__inner{
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2rem 0 0 0;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        right: 0;
+        width: 67%;
+        transition: background-color 0.5s;
+    }
+    &__inner_bcg{
+        background-color: #8c8a8aa4;
+    }
+    &__nav{
+        li{
+            display: inline;
+            list-style-type: none;
+            a{
+                margin: 0 2rem 0 0;
+                color: #FFF;
+                transition: color .5s;
+            }
+            a:hover{
+                color: @yellow;
+            }
+        }
+    }
+    &__logo{
+        color: @yellow;
+        font-size: 1.5rem;
+        font-weight: 900;
+    }
+    &__contacts{
+        text-align: center;
+        .phone{
+            color: #000;
+            font-size: 1.5rem;
+        }
+        .btn{
+            margin: 0.9rem;
+            background-color: #000;
+            color: #fff;
+            padding: 1.1rem;
+            border: 2px solid @yellow;
+            border-radius: 30px;
+            outline: none;
+            cursor: pointer;
+        }
+    }
+}
+
+.intro{
+    margin: -45rem 0 0 0;
+
+    &__inner{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__form{
+        width: 400px;
+        height: 480px;
+        background-color: red;
+    }
+    &__title{
+        margin: 15rem 0 0 0;
+        font-size: 4rem;
+        color: #fff;
+        font-weight: 700;
+        max-width: 50rem;
+        line-height: 5rem;
+        transform: translate(0, 120%);
+        opacity: 0;
+        transition: all 0.8s ease 0s;
+    }
+    &__title._active{
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    &__price{
+        margin: 4rem 0 0 0;
+    }
+    &__btn{
+        display: inline-block;
+        font-size: 2.5rem;
+        font-weight: 700;
+        background-color: @yellow;
+        border-radius: 2rem;
+        padding: 1.3rem 2.2rem;
+        transform: translate(0, 120%);
+        opacity: 0;
+        transition: all 0.8s ease 0.3s;
+    }
+    &__btn._active{
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    &__describe{
+        margin: 0 0 0 2rem;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #fff;
+        transform: translate(0, 120%);
+        opacity: 0;
+        transition: all 0.8s ease 0.3s;
+    }
+    &__describe._active{
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+.advantages{
+    background-color: #000;
+    margin: 12rem 0 0 0;
+    &__inner{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 4rem 0;
+    }
+    &__item{
+        width: ~"calc(25% - 0.5rem)";
+        text-align: center;
+        margin: 0 1rem;
+    }
+    &__img{
+        margin: 2rem 0;
+        position: relative;
+        display: inline-block;
+        background-color: @yellow;
+        padding: 2rem;
+        border-radius: 50%;
+        border: 1rem solid #000;
+        box-shadow: 0 0 0 0.3rem #000, 0 0 0 0.5rem @yellow;
+    }
+    &__title{
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+}
+.about-company{
+    margin: 1.5rem 0 11.42rem;
+    padding: 7.5rem 0;
+    color: #FFF;
+    text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+    border-bottom-color: #000; 
+    border-bottom-style: solid; 
+    border-bottom-width: 2px;
+    border-top-color: #000; 
+    border-top-style: solid; 
+    border-top-width: 2px;
+    &__inner{
+        display: flex; 
+    }
+    &__desc{
+        width: 40%;
+    }
+    &__title{
+        margin: 1.5rem 0;
+        font-size: 2.5rem;
+        font-weight: 900;
+        width: 33%;
+    }
+    &__line{
+        flex-grow: 1;
+        border-bottom-color: #000; 
+        border-bottom-style: solid; 
+        border-bottom-width: 1px;
+        border-top-color: #000; 
+        border-top-style: solid; 
+        border-top-width: 1px;
+    }
+}
+.jobs{
+    background-color: #000;
+    color: #FFF;
+    padding: 0 0 6rem 0;
+    &__title{
+        padding: 6.7rem 0 6rem 0;
+    }
+    &__inner{
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+    &__item{
+        width: ~"calc(25% - 2rem)";
+        margin: 1rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        
+    }
+    &__img img{
+        max-width: 100%;
+    }
+    &__desc{
+        font-size: 1.5rem;
+        font-weight: 700;
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    &__btn{
+        background-color: @yellow;
+        color: #000;
+        font-size: 1.5rem;
+        font-weight: 700;
+        padding: 1.1rem 0;
+        border-radius: 2.2rem;
+        transition: box-shadow .5s;
+        margin: auto 0 0 0;
+        cursor: pointer;
+    }
+    &__btn:hover{
+        box-shadow: 0px 6px 10px rgba(255, 184, 0, 0.4);
+    }
+}
+.promotion{
+    margin: 1.5rem 0;
+    padding-bottom: 8rem;
+    background-image: url(../img/promotion-bcg1.jpg), linear-gradient(90deg, rgba(0, 0, 0, 0.73) 0%, rgba(0, 0, 0, 0.403021) 48.96%, rgba(0, 0, 0, 0) 100%);
+    background-blend-mode: overlay;
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: cover;
+    &__inner{
+        position: relative;
+    }
+    &__smear{
+        margin: 4rem 0 0 0.5rem;
+        display: inline-block;
+        position: relative;
+        span{
+            position: absolute;
+            left: 25%;
+            top: 35%;
+            font-size: 1.7rem;
+            font-weight: 900;
+            transform:rotate(-5deg);
+        }
+    }
+    &__title{
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #FFF;
+        text-align: center;
+        &_yellow{
+            color: @yellow;
+        }
+    }
+    &__desc{
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #FFF;
+        text-align: center;
+    }
+    &__call{
+        position: relative;
+        margin-left: 25rem;
+        margin-top: 5rem;
+    }
+    &__phone{
+        border: 1px solid #cccccc; //цвет рамки
+        border-radius: 2rem; //закругление углов (общее)
+        background: #ffffff !important; // желательно прописывать, так как в Chrome при сохранных данных оно может быть желтым
+        outline: none; // удаляет обводку в браузерах хром(желтая) и сафари(синяя)
+        height: 4rem; // высота на свое усмотрение
+        width: 57rem; // ширина на свое усмотрение
+        color: #8C8A8A; //цвет шрифта в обычном состоянии
+        padding-left: 2rem;
+        }
+    &__btn{
+        position: absolute;
+        border: 1px solid #cccccc; //цвет рамки
+        border-radius: 2rem; //закругление углов (общее)
+        background: @yellow; // желательно прописывать, так как в Chrome при сохранных данных оно может быть желтым
+        outline: none; // удаляет обводку в браузерах хром(желтая) и сафари(синяя)
+        height: 4.3rem; // высота на свое усмотрение
+        width: 23rem; // ширина на свое усмотрение
+        color: #000; //цвет шрифта в обычном состоянии
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding-left: 2rem;
+        right: 1rem;
+        cursor: pointer;
+        }
+    &__3in1{
+        position: absolute;
+        top: 11.7rem;
+        left: -8rem;
+    }
+}
+.stages{
+    background-color: #000;
+    padding-bottom: 8.6rem;
+    &__title{
+        padding: 6.7rem 0 6rem 0;
+        color: #FFF;
+    }
+    &__inner{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    &__item{
+        background-color: @yellow;
+        width: ~"calc(33% - 2rem)";
+        margin: 2rem 1rem;
+        text-align: center;
+        position: relative;
+    }    
+    &__num{
+        position: absolute;
+        font-weight: 900;
+        font-size: 4rem;
+        color: @yellow;
+        text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+        left: 1rem;
+        top: -2rem;
+    }
+    &__note{
+        margin: 1rem auto 1rem;
+        font-weight: 700;
+        width: 60%;
+        padding-bottom: 1rem;
+    }
+    &__desc{
+        padding-top: 3rem;
+        margin: 0 auto 1rem;
+        width: 70%;
+        line-height: 2rem;
+        border-top-color: #fff; 
+        border-top-style: dotted; 
+        border-top-width: 1px;
+    }
+}
+.cost{
+    margin-top: 8rem;
+    margin-bottom: 8.57rem;
+    &__wrapper-title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__title{
+        margin-right: 4rem;
+    }
+    .container-small p{
+        color: @yellow;
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-left: 6.8rem;
+    }
+    &__factors{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: space-around;
+        max-height: 10rem;
+        
+        &-item{
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1rem;
+            span{
+                display: inline-block;
+                width: 3rem;
+                height: 3rem;
+                text-align: center;
+                line-height: 3rem;
+                background-color: @yellow;
+                border-radius: 50%;
+            }
+        }
+    }
+    &__warning{
+        margin-top: 2rem;
+        display: flex;
+        background-color: #CBCBCB;
+        padding: 2rem;
+        border-radius: 0.8rem;
+        
+        justify-content: space-around;
+        img{
+            padding-right: 1.5rem;
+            border-right-color: @yellow; 
+            border-right-style: solid; 
+            border-right-width: 1px;
+        }
+        &-info{
+            margin-left: 1rem;
+        }
+    }
+    &__form{
+        margin-top: 2.85rem;
+        padding: 3.57rem 7.14rem;
+        background-color: @yellow;
+        &-inner{
+            margin-bottom: 3.71rem;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .col{
+                display: flex;
+                flex-direction: column;
+                flex-basis: 100%;
+                flex: 1;
+                align-items: center;
+            }
+        }
+        input, textarea, button{
+            border: 1px solid #000; //цвет рамки
+            border-radius: 2rem; //закругление углов (общее)
+            background-color: @yellow; // желательно прописывать, так как в Chrome при сохранных данных оно может быть желтым
+            outline: none; // удаляет обводку в браузерах хром(желтая) и сафари(синяя)
+            width: 22rem; // ширина на свое усмотрение
+            padding-left: 2rem;
+            margin-top: 1rem;
+        }
+        input:focus{
+            background-color: @yellow;
+        }
+        input, button{
+            height: 4rem; // высота на свое усмотрение
+        }
+        textarea{
+            padding: 1rem 2rem;
+        }
+        button{
+            display: block;
+            margin: 0 auto;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding-left: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    }
+}
+.jobs-photo{
+    background-color: #000;
+    padding-bottom: 7.286rem;
+    &__title{
+        color: #FFF;
+        padding-top: 7.28rem;
+        padding-bottom: 5.28rem;
+    }
+    &__inner{
+        display: grid;
+        
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 22.857rem);
+        grid-gap: 0.286rem;
+    }
+    &__item{
+        color: #FFF;
+        background-color: @yellow;
+        transition: transform 1s;
+    }
+    &__item:hover{
+        transform: scale(1.2);
+        z-index: 10;
+    }
+}
+#jobs-photo__item{
+    &1{
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+    &10{
+        grid-column-start: 3;
+        grid-column-end: 5;
+    }
+}
+.footer{
+    margin-top: 0.714rem;
+    background-color: #000;
+    color: #FFF;
+    &__inner{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 2.85rem 0;
+        align-items: center;
+    }
+    &__logo{
+        color: @yellow;
+        font-size: 2.57rem;
+        font-weight: 800;
+        flex-grow: 1;
+    }
+    &__address{
+        flex-grow: 3;
+    }
+    &__social{
+        font-size: 1.29rem;
+        img{
+            margin-right: 2.85rem;
+        }
+    }
+    &__contacts{
+        flex-grow: 1;
+        position: relative;
+        text-align: center;
+        .phone{
+            color: #fff;
+            font-size: 1.5rem;
+        }
+        .btn{
+            margin: 0.9rem;
+            background-color: #000;
+            color: @yellow;
+            padding: 1.1rem;
+            border: 2px solid @yellow;
+            border-radius: 30px;
+            outline: none;
+            cursor: pointer;
+        }
+    }
+    &__right{
+        opacity: 0;
+        position: fixed;
+        top: 90%;
+        left: 50%;
+        cursor: pointer;
+        transition: opacity 1s;
+    }
+    &__right.active{
+        opacity: 1;
+    }
+}
+.popup{
+    max-width: 28.571rem;
+    max-height: 21.429rem;
+    margin: 0 auto;
+    position: relative;
+    border: #000 1px solid;
+    text-align: center;
+    font-weight: 700;
+    &__title{
+        font-size: 2.14rem;
+        color: @yellow;
+        margin: 6rem 0 4rem;
+    }
+    &__subtitle{
+        font-size: 1.43rem;
+        margin: 0 2.75rem 5.28rem;
+    }
+    &__close{
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        cursor: pointer;
+        width: 18px;
+        height: 21px;
+        background: url(../img/popup-close.svg) no-repeat;
+    }
+}
+
+.vmodal.open .modal-overlay{
+    opacity: 1;
+    z-index: 1;
+}
+
+.vmodal.open .modal-window{
+    z-index: 1;
+    opacity: 1;
+}
+
+.vmodal.hide .modal-overlay,
+.vmodal.hide .modal-window{
+    opacity: 1;
+    z-index: 1;
+}
+
+.vmodal.open .modal-window{
+    transform: translateY(100px);
+}
+
+.vmodal.open .modal-overlay{
+    background: rgba(0,0,0, 0.5);
+}
+
+.vmodal.hide .modal-window{
+    transform: translateY(-200px);
+}
+
+.vmodal.hide .modal-overlay{
+    background: rgba(0,0,0, 0);
+}
+
+.modal-window, .modal-overlay{
+    opacity: 0;
+    z-index: -1;
+}
+
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0, 0);
+    transition: background 0.2s ease-in;
+}
+
+.modal-window{
+    border-radius: 5px;
+    background: #fff;
+    margin: 0 auto;
+    transform: translateY(-200px);
+    transition: transform 0.2s ease-in;
+}
+
+.menu-burger{
+    width: 24px;
+    height: 24px;
+    fill: @yellow;
+    display: none;
+}
+
+@media (max-width: 1280px){
+    .header__inner{
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    html{
+        font-size: 10px;
+    }
+    .menu-burger{
+        z-index: 5;
+        display: block;
+        cursor: pointer;
+        order: -2;
+    }
+    .header__nav{
+        position: absolute;
+        top: 1rem;
+        top: 8rem;
+        left: -15rem;
+        order: -1;
+        border-radius: 1rem;
+        background-color: #8c8a8aa4;
+        transition: left 2s;
+        li{
+            display: block;
+            margin: 1rem 0;
+        }
+    }
+
+    .advantages{
+        &__item{
+            width: ~"calc(100% - 0.5rem)";
+        }
+    }
+
+    .intro{
+        &__inner{
+            margin-left: 3rem;
+        }
+    }
+
+    .about-company{
+        &__inner{
+            margin-left: 3rem;
+        }
+    }
+
+    .jobs{
+        &__item{
+            width: ~"calc(50% - 2rem)";
+            margin: 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            
+        }
+    }
+
+    .promotion{
+        margin: 1.5rem 0;
+        padding-bottom: 8rem;
+        background-image: url(../img/promotion-bcg1.jpg), linear-gradient(90deg, rgba(0, 0, 0, 0.73) 0%, rgba(0, 0, 0, 0.403021) 48.96%, rgba(0, 0, 0, 0) 100%);
+        background-blend-mode: overlay;
+        background-repeat:no-repeat;
+        background-position: center;
+        background-size: cover;
+        &__inner{
+            position: relative;
+        }
+        &__smear{
+            margin: 4rem 0 0 0.5rem;
+            display: inline-block;
+            position: relative;
+            span{
+                position: absolute;
+                left: 25%;
+                top: 35%;
+                font-size: 1.7rem;
+                font-weight: 900;
+                transform:rotate(-5deg);
+            }
+        }
+        &__title{
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFF;
+            text-align: center;
+            &_yellow{
+                color: @yellow;
+            }
+        }
+        &__desc{
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #FFF;
+            text-align: center;
+        }
+        &__call{
+            position: relative;
+            margin-left: 25rem;
+            margin-top: 5rem;
+        }
+        &__phone{
+            width: 25rem; // ширина на свое усмотрение
+            }
+        &__btn{
+            width: 13rem; // ширина на свое усмотрение
+            }
+        &__3in1{
+            position: absolute;
+            top: 24.5rem;
+            left: -4rem;
+            img{
+                width: 50%;
+            }
+        }
+    }
+
+    .stages{
+        &__item{
+            background-color: @yellow;
+            width: ~"calc(50% - 2rem)";
+            margin: 2rem 1rem;
+            text-align: center;
+            position: relative;
+
+        }    
+    }
+    .jobs-photo{
+
+        &__inner{
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 12.857rem);
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
