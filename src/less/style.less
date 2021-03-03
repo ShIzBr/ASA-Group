@@ -798,18 +798,26 @@ body.lock{
     // }
 
     .header__nav{
+        margin: 0;
         position: absolute;
-        top: 1rem;
-        top: 8rem;
-        left: -15rem;
+        width: 100%;
+        top: -250%;
+        left: 0;
         order: -1;
         border-radius: 1rem;
-        background-color: #8c8a8aa4;
-        transition: left 2s;
+        background-color: #000000c0;
+        transition: top 1s;
         li{
-            display: block;
+            display: flex;
+            flex-direction: column;
             margin: 1rem 0;
+            a{
+                font-size: large;
+            }
         }
+    }
+    .header__nav.active{
+        top: 0;
     }
 
     .advantages{
